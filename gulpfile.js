@@ -18,7 +18,10 @@ gulp.task('copy', ['clean'], function() {
     gulp.src('node_modules/font-awesome/fonts/**')
       .pipe(gulp.dest('build/fonts/'));
 
-    return gulp.src('node_modules/ratchet/dist/fonts/**')
+    gulp.src('src/index.html')
+      .pipe(gulp.dest('build/'));
+
+    return gulp.src('node_modules/bootflat/fonts/**')
       .pipe(gulp.dest('build/fonts/'));
 });
 
@@ -61,3 +64,6 @@ gulp.task('serve', function () {
     }
 	});
 });
+
+gulp.task('build', ['clean', 'copy', 'less', 'build-js']);
+gulp.task('dev', ['build', 'serve', 'watch']);
